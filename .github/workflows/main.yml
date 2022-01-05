@@ -5,6 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Reproduce issue
     steps:
+      - uses: actions/checkout@v2
       - name: Run command in the failing docker image
         id: hello
         uses: gableroux/pylint-celery-setuptools-issue@v1
