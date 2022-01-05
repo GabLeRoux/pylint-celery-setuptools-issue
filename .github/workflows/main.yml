@@ -6,11 +6,10 @@ jobs:
     name: Reproduce issue
     steps:
       - uses: actions/checkout@v2
-      - name: Generate requirements.txt
-        uses: gableroux/pylint-celery-setuptools-issue@v1
+      - uses: actions/setup-python@v2
         with:
-          command: pip-compile --generate-hashes -o requirements.txt
-      - name: Install requirements.txt
-        uses: gableroux/pylint-celery-setuptools-issue@v1
-        with:
-          command: pip install -r requirements.txt
+          python-version: '3.9.7'
+      - run: pip install --upgrade pip
+      - run: pip install pip-tools
+      - run: pip-compile --generate-hashes -o requirements.txt
+      - run: pip install -r requirements.txt
