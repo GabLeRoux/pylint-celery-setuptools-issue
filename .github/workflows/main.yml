@@ -10,4 +10,6 @@ jobs:
         id: hello
         uses: gableroux/pylint-celery-setuptools-issue@v1
         with:
-          command: pip install -r requirements.txt
+          command: |
+            pip-compile --generate-hashes -o requirements.txt
+            pip install -r requirements.txt
