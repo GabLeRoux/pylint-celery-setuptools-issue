@@ -1,25 +1,12 @@
-# Hello world docker action
+# Reproduce celery + pylint + pip-compile --require-hashes issue
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+See https://github.com/PyCQA/astroid/issues/1329
 
-## Inputs
+## How to generate `requirements.txt`
 
-## `who-to-greet`
-
-**Required** The name of the person to greet. Default `"World"`.
-
-## Outputs
-
-## `time`
-
-The time we greeted you.
-
-## Example usage
-
-```yaml
-uses: actions/hello-world-docker-action@v1
-with:
-  who-to-greet: 'Mona the Octocat'
+```bash
+docker build example_image
+docker run --rm -v "$(pwd):/app" -w /app -it example_image pip-compile --generate-hashes -o requirements.txt
 ```
 
 ## License

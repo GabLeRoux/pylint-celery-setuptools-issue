@@ -3,13 +3,10 @@ on: [push]
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: Reproduce issue
     steps:
-      - name: Hello world action step
+      - name: Run command in the failing docker image
         id: hello
-        uses: gableroux/hello-world-docker-action@v1
+        uses: gableroux/pylint-celery-setuptools-issue@v1
         with:
-          who-to-greet: 'GabLeRoux the Octodev'
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+          command: pip install -r requirements.txt
